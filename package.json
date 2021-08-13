@@ -1,0 +1,131 @@
+{
+  "name": "image-handle",
+  "productName": "图片处理",
+  "version": "1.0.0",
+  "author": "sidney <516202795@qq.com>",
+  "description": "An electron-vue project",
+  "license": "",
+  "main": "./dist/electron/main.js",
+  "build": {
+    "appId": "com.sidney.app",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "icon": "./static/favicon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": true
+    },
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/electron",
+      "node_modules/",
+      "package.json"
+    ],
+    "extraFiles": [
+      "dlls",
+      "dats"
+    ]
+  },
+  "scripts": {
+    "build": "node .electron-vue/build.js",
+    "build:darwin": "cross-env BUILD_TARGET=darwin node .electron-vue/build.js",
+    "build:linux": "cross-env BUILD_TARGET=linux node .electron-vue/build.js",
+    "build:mas": "cross-env BUILD_TARGET=mas node .electron-vue/build.js",
+    "build:win32": "cross-env BUILD_TARGET=win32 node .electron-vue/build.js",
+    "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
+    "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
+    "dev": "node .electron-vue/dev-runner.js --enable-logging",
+    "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
+    "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
+    "packapp": "electron-packager . myClient --win --out ../myClient --arch=x64 --app-version=0.0.1 --electron-version=2.0.9",
+    "packapp32": "electron-packager . myClient --win --out ../myClient --arch=ia32 --app-version=0.0.1 --electron-version=2.0.9",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "cross-env BUILD_TARGET=win32 node .electron-vue/build.js && electron-builder --win --x64",
+    "pack32": "cross-env BUILD_TARGET=win32 node .electron-vue/build.js && electron-builder --win --ia32",
+    "dist": "electron-builder --win --x64",
+    "dist32": "electron-builder --win --ia32"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "electron-json-storage": "^4.1.4",
+    "element-ui": "^2.12.0",
+    "ffi": "^2.2.0",
+    "vtk.js": "^8.3.2",
+    "control-panel": "^1.2.0",
+    "drag-and-drop-files": "0.0.1",
+    "regl": "^1.3.0",
+    "regl-camera": "^1.1.0",
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "ajv": "^6.5.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-bind": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.0.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "babili-webpack-plugin": "^0.1.2",
+    "cfonts": "^2.1.2",
+    "chalk": "^2.4.1",
+    "copy-webpack-plugin": "^4.5.1",
+    "cross-env": "^5.1.6",
+    "css-loader": "^0.28.11",
+    "del": "^3.0.0",
+    "devtron": "^1.4.0",
+    "electron": "2.0.9",
+    "electron-builder": "^20.38.4",
+    "electron-debug": "^1.5.0",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-packager": "^12.1.1",
+    "electron-rebuild": "^1.8.1",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "kw-web-suite": "^8.0.0",
+    "mini-css-extract-plugin": "0.4.0",
+    "multispinner": "^0.2.1",
+    "node-loader": "^0.6.0",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "vue-html-loader": "^1.2.4",
+    "vue-loader": "^15.2.4",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-hot-middleware": "^2.22.2",
+    "webpack-merge": "^4.1.3",
+    "yarn": "^1.12.3"
+  }
+}
